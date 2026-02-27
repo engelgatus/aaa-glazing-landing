@@ -1,21 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
-
-function PlaceholderPanel({ label }: { label: string }) {
-  return (
-    <div className="relative w-1/2 h-full">
-      {/* TODO: replace with <Image fill src="/images/hero-left.jpg" alt="..." /> */}
-      <div className="absolute inset-0 bg-slate-700" />
-      <span className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/30 text-[10px] font-mono uppercase tracking-widest whitespace-nowrap">
-        {label}
-      </span>
-    </div>
-  );
-}
 
 const stats = [
   { number: "35+", label: "Years of Experience" },
@@ -35,16 +24,23 @@ const fadeUp: Variants = {
 
 export default function Hero() {
   return (
-    <section className="relative h-screen flex flex-col overflow-hidden">
-      <div className="absolute inset-0 flex">
-        <PlaceholderPanel label="Residential glazier — replace with hero-left.jpg" />
-        <PlaceholderPanel label="Commercial shopfront — replace with hero-right.jpg" />
+    <section id="hero" className="relative h-screen flex flex-col overflow-hidden">
+      <div className="absolute inset-0">
+        <Image
+          src="/images/hero.webp"
+          alt="AAA Glazing Services — professional glazier at work"
+          fill
+          priority
+          quality={85}
+          sizes="100vw"
+          className="object-cover object-center"
+        />
         <div className="absolute inset-0 bg-linear-to-b from-black/65 via-black/40 to-black/75" />
       </div>
 
       <div className="relative z-10 flex flex-col flex-1 justify-center px-6 pt-28">
         <div className="max-w-7xl mx-auto w-full grid grid-cols-12 gap-4">
-          <div className="col-span-12 md:col-span-8 md:col-start-3 flex flex-col items-center text-center">
+          <div className="col-span-12 md:col-span-8 md:col-start-1 flex flex-col items-start text-left">
             <motion.p
               custom={0}
               initial="hidden"
@@ -60,7 +56,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight mb-5"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl! font-bold text-white leading-[1.05] tracking-tight mb-5"
             >
               Glass Repairs Melbourne
             </motion.h1>
@@ -70,7 +66,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="text-lg sm:text-xl text-white/80 font-medium mb-3 max-w-2xl"
+              className="text-lg sm:text-xl text-white/90 font-medium mb-3 max-w-2xl"
             >
               The fastest, most reliable glass repair service in Melbourne and across Victoria.
             </motion.p>
@@ -80,7 +76,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="text-sm sm:text-base text-white/55 max-w-xl leading-relaxed mb-10"
+              className="text-sm sm:text-base text-white/80 max-w-xl leading-relaxed mb-10"
             >
               Trusted for over 35 years, AAA Glazing Services protects Victorian homes and
               businesses with fast, expert glass repairs and 24/7 emergency service, restoring
@@ -92,7 +88,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="flex flex-col sm:flex-row gap-3 justify-center"
+              className="flex flex-col sm:flex-row gap-3 w-full"
             >
               <a
                 href="#quote"
@@ -118,17 +114,17 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="col-span-12 grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10 bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl overflow-hidden"
+            className="col-span-12 md:col-span-7 md:col-start-1 grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10 bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl overflow-hidden"
           >
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="flex flex-col items-center justify-center text-center py-5 px-4"
+                className="flex flex-col items-center justify-center text-center py-4 sm:py-5 px-3 sm:px-4"
               >
-                <span className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                <span className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight">
                   {stat.number}
                 </span>
-                <span className="text-[11px] sm:text-xs text-white/55 mt-1 leading-tight">
+                <span className="text-[10px] sm:text-[11px] text-white/55 mt-1 leading-tight">
                   {stat.label}
                 </span>
               </div>
