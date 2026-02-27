@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
+import basePath from "@/lib/basePath";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -27,7 +28,7 @@ export default function Hero() {
     <section id="hero" className="relative h-screen flex flex-col overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src="images/hero.webp"
+          src={`${basePath}/images/hero.webp`}
           alt="AAA Glazing Services — professional glazier at work"
           fill
           priority

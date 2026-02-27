@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
+import basePath from "@/lib/basePath";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -22,7 +23,7 @@ export default function Pain() {
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="images/pain.jpg"
+          src={`${basePath}/images/pain.jpg`}
           alt="Broken glass — AAA Glazing Services emergency repair"
           fill
           priority
