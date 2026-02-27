@@ -19,7 +19,7 @@ const faqs = [
   {
     question: "How quickly can you respond to an emergency glass repair?",
     answer:
-      "Our emergency glaziers are available 24/7 and can typically respond within 1–2 hours across metropolitan Melbourne. For regional Victoria, response times may vary depending on your location — call us on 1300 666 701 for an immediate ETA.",
+      "Our emergency glaziers are available 24/7 and can typically respond within 1–2 hours across metropolitan Melbourne. For regional Victoria, response times may vary depending on your location. Call us on 1300 666 701 for an immediate ETA.",
   },
   {
     question: "Are your glaziers licensed and insured?",
@@ -29,12 +29,12 @@ const faqs = [
   {
     question: "Should you repair or replace your broken window?",
     answer:
-      "Small chips and cracks can sometimes be repaired, but larger cracks, shattered panes, or broken frames usually need a full replacement. For double-glazed windows, foggy panels between the layers are a sign replacement is better. Think about safety, energy efficiency, and appearance — if the glass feels loose, drafts are coming through, or it keeps breaking, replacement is safer and smarter.",
+      "Small chips and cracks can sometimes be repaired, but larger cracks, shattered panes, or broken frames usually need a full replacement. For double-glazed windows, foggy panels between the layers are a sign replacement is better. Think about safety, energy efficiency, and appearance; if the glass feels loose, drafts are coming through, or it keeps breaking, replacement is safer and smarter.",
   },
   {
     question: "Can double-glazed windows be repaired?",
     answer:
-      "Double-glazed windows are a bit trickier than single panes. Small cracks might be repairable, but if the glass is foggy or the seal is broken, replacement is usually needed. Once the seal fails, the insulating effect is lost — fixing or replacing it ensures your home stays warm, quiet, and energy-efficient.",
+      "Double-glazed windows are a bit trickier than single panes. Small cracks might be repairable, but if the glass is foggy or the seal is broken, replacement is usually needed. Once the seal fails, the insulating effect is lost. Fixing or replacing it ensures your home stays warm, quiet, and energy-efficient.",
   },
   {
     question: "How much do glass repairs in Melbourne cost?",
