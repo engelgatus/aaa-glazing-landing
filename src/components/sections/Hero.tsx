@@ -109,7 +109,9 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 px-6 pb-8">
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-12 gap-4">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-12 gap-4 items-end">
+
+          {/* Stats bar — left */}
           <motion.div
             custom={6}
             initial="hidden"
@@ -131,7 +133,42 @@ export default function Hero() {
               </div>
             ))}
           </motion.div>
+
         </div>
+
+        {/* Badges — absolutely pinned to bottom-right of section */}
+        <motion.div
+          custom={7}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="absolute bottom-8 right-6 flex items-center gap-3"
+        >
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/20 backdrop-blur-sm border border-white/25 flex items-center justify-center shrink-0">
+            <div className="relative w-11 h-11 sm:w-14 sm:h-14">
+              <Image
+                src={`${basePath}/images/aaa-logo.webp`}
+                alt="AAA Glazing Services logo"
+                fill
+                sizes="56px"
+                className="object-contain"
+              />
+            </div>
+          </div>
+
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/20 backdrop-blur-sm border border-white/25 flex items-center justify-center shrink-0">
+            <div className="relative w-11 h-11 sm:w-14 sm:h-14">
+              <Image
+                src={`${basePath}/images/agga.webp`}
+                alt="AGGA accreditation badge"
+                fill
+                sizes="56px"
+                className="object-contain"
+              />
+            </div>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );
