@@ -1,7 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
+import { useEffect, useState } from "react";
+import basePath from "@/lib/basePath";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -14,25 +17,36 @@ const fadeUp: Variants = {
   }),
 };
 
+const images = [
+  {
+    src: `${basePath}/images/about-1.webp`,
+    alt: "AAA Glazing Services team at work",
+  },
+  {
+    src: `${basePath}/images/about-2.webp`,
+    alt: "AAA Glazing Services — quality glass repairs",
+  },
+];
+
+const SLIDE_INTERVAL = 4500;
+
 export default function About() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, SLIDE_INTERVAL);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="bg-white py-16 sm:py-20 md:py-24 px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4 items-center">
 
         <div className="col-span-12 md:col-span-5 flex flex-col justify-center">
-          <motion.p
-            custom={0}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="text-primary text-xs font-semibold uppercase tracking-[0.2em] mb-4"
-          >
-            Who We Are
-          </motion.p>
-
           <motion.h2
-            custom={1}
+            custom={0}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -43,7 +57,7 @@ export default function About() {
           </motion.h2>
 
           <motion.p
-            custom={2}
+            custom={1}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -56,7 +70,7 @@ export default function About() {
           </motion.p>
 
           <motion.p
-            custom={3}
+            custom={2}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -71,7 +85,7 @@ export default function About() {
           </motion.p>
 
           <motion.a
-            custom={4}
+            custom={3}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -90,14 +104,26 @@ export default function About() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="w-full h-64 sm:h-80 md:h-full min-h-80 rounded-2xl overflow-hidden bg-slate-200"
+            className="relative w-full h-64 sm:h-80 md:h-130 rounded-2xl overflow-hidden"
           >
-            {/* TODO: replace with <Image fill src="/images/about.jpg" alt="AAA Glazing team" /> */}
-            <div className="w-full h-full bg-slate-200 flex items-end justify-center pb-6">
-              <span className="text-slate-400 text-[10px] font-mono uppercase tracking-widest">
-                Team photo — replace with about.jpg
-              </span>
-            </div>
+            <AnimatePresence mode="sync">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 1.2, ease: "easeInOut" } }}
+                exit={{ opacity: 0, transition: { duration: 1.2, ease: "easeInOut" } }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={images[index].src}
+                  alt={images[index].alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={85}
+                  className="object-cover object-center"
+                />
+              </motion.div>
+            </AnimatePresence>
           </motion.div>
         </div>
 

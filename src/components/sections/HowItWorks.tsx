@@ -6,12 +6,21 @@ import type { Variants } from "framer-motion";
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 32 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.55, ease },
+    transition: { delay: i * 0.12, duration: 0.6, ease },
   }),
+};
+
+const fadeIn: Variants = {
+  hidden: { opacity: 0, x: 24 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease },
+  },
 };
 
 const steps = [
@@ -44,66 +53,64 @@ const steps = [
 export default function HowItWorks() {
   return (
     <section className="bg-white py-16 sm:py-20 md:py-24 px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4 md:gap-8">
 
-        <div className="col-span-12 md:col-span-8 mb-10 md:mb-12">
-          <motion.p
-            custom={0}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="text-primary text-xs font-semibold uppercase tracking-[0.2em] mb-4"
-          >
-            Our Process
-          </motion.p>
+        {/* Left — vertical step list */}
+        <div className="col-span-12 md:col-span-7 md:col-start-1 relative order-last md:order-first">
 
-          <motion.h2
-            custom={1}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-text leading-tight tracking-tight mb-4"
-          >
-            Getting your glass fixed has never been this easy
-          </motion.h2>
+          {/* Connector line */}
+          <div className="absolute left-4.75 top-5 bottom-5 w-px bg-slate-100 hidden sm:block" />
 
-          <motion.p
-            custom={2}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="text-muted text-base sm:text-lg leading-relaxed"
-          >
-            We&apos;ve made the process as simple and stress-free as possible, from your
-            first call to the finished job.
-          </motion.p>
+          <div className="flex flex-col">
+            {steps.map((step, i) => (
+              <motion.div
+                key={step.number}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }}
+                variants={fadeUp}
+                className="relative flex gap-6 sm:gap-8 pb-12 last:pb-0 group"
+              >
+                {/* Encircled dot */}
+                <div className="relative z-10 shrink-0 w-10 h-10 rounded-full border-2 border-slate-200 bg-white group-hover:border-primary group-hover:bg-primary transition-colors duration-300 flex items-center justify-center mt-1">
+                  <span className="text-[10px] font-bold text-slate-400 group-hover:text-white transition-colors duration-300 tracking-wider">
+                    {step.number}
+                  </span>
+                </div>
+
+                {/* Step content */}
+                <div className="flex-1 pt-2">
+                  <h3 className="text-text font-bold text-lg sm:text-xl leading-snug mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-muted text-sm sm:text-base leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
-        <div className="col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {steps.map((step, i) => (
+        {/* Right — sticky heading, pinned for full step list height */}
+        <div className="col-span-12 md:col-span-4 md:col-start-9 order-first md:order-last">
+          <div className="md:sticky md:top-32">
             <motion.div
-              key={step.number}
-              custom={3 + i}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={fadeUp}
-              className="bg-surface border border-slate-100 rounded-2xl p-6 sm:p-7 flex flex-col gap-4"
+              variants={fadeIn}
             >
-              <span className="text-4xl font-bold text-slate-100 leading-none tracking-tight">
-                {step.number}
-              </span>
-              <h3 className="text-text font-semibold text-base leading-snug">
-                {step.title}
-              </h3>
-              <p className="text-muted text-sm leading-relaxed">
-                {step.description}
+              <h2 className="text-3xl sm:text-4xl font-bold text-text leading-tight tracking-tight mb-5">
+                Getting your glass fixed has never been this easy
+              </h2>
+              <p className="text-muted text-base sm:text-lg leading-relaxed">
+                We&apos;ve made the process as simple and stress-free as possible,
+                from your first call to the finished job.
               </p>
             </motion.div>
-          ))}
+          </div>
         </div>
 
       </div>
