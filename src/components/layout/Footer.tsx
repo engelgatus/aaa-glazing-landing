@@ -10,7 +10,8 @@ const links = [
 
 export default function Footer() {
   return (
-    <footer className="bg-text py-12 sm:py-16 px-6">
+    <footer className="bg-text py-12 sm:py-16 px-6 overflow-x-hidden">
+
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4">
 
         <div className="col-span-12 md:col-span-4 flex flex-col gap-4 mb-8 md:mb-0">

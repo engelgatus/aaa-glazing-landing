@@ -25,7 +25,11 @@ const fadeUp: Variants = {
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative h-screen flex flex-col overflow-hidden">
+    <section
+      id="hero"
+      className="relative h-svh md:h-screen flex flex-col overflow-hidden"
+    >
+      {/* Background */}
       <div className="absolute inset-0">
         <Image
           src={`${basePath}/images/hero.webp`}
@@ -39,15 +43,19 @@ export default function Hero() {
         <div className="absolute inset-0 bg-linear-to-b from-black/65 via-black/40 to-black/75" />
       </div>
 
-      <div className="relative z-10 flex flex-col flex-1 justify-center px-6 pt-28">
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-12 gap-4">
+      {/* Content block */}
+      <div className="relative z-10 flex flex-col flex-1 pt-20 md:pt-0 md:justify-center px-5 md:px-6">
+
+        {/* Text + CTAs — centered in remaining space on mobile */}
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-12 gap-4 flex-1 content-center">
           <div className="col-span-12 md:col-span-8 md:col-start-1 flex flex-col items-start text-left">
+
             <motion.p
               custom={0}
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="text-white/60 text-xs font-semibold uppercase tracking-[0.2em] mb-5"
+              className="text-white/60 text-xs font-semibold uppercase tracking-[0.2em] mb-3 md:mb-5"
             >
               Trusted Since 1991 &nbsp;&middot;&nbsp; AGGA Accredited
             </motion.p>
@@ -57,7 +65,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl! font-bold text-white leading-[1.05] tracking-tight mb-5"
+              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl! font-bold text-white leading-[1.05] tracking-tight mb-3 md:mb-5"
             >
               Glass Repairs Melbourne
             </motion.h1>
@@ -67,7 +75,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="text-lg sm:text-xl text-white/90 font-medium mb-3 max-w-2xl"
+              className="text-base sm:text-xl md:text-xl text-white/90 font-medium mb-2 md:mb-3 max-w-2xl"
             >
               The fastest, most reliable glass repair service in Melbourne and across Victoria.
             </motion.p>
@@ -77,7 +85,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="text-sm sm:text-base text-white/80 max-w-xl leading-relaxed mb-10"
+              className="text-xs sm:text-base text-white/80 max-w-xl leading-relaxed mb-4 md:mb-10"
             >
               Trusted for over 35 years, AAA Glazing Services protects Victorian homes and
               businesses with fast, expert glass repairs and 24/7 emergency service, restoring
@@ -89,29 +97,55 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="flex flex-col items-start gap-3 sm:flex-row sm:items-center"
+              className="flex flex-col items-start gap-2 sm:flex-row sm:items-center mt-4 md:mt-0 md:gap-3"
             >
               <a
                 href="#quote"
-                className="bg-accent text-text font-bold px-8 py-4 rounded-full text-sm tracking-wide hover:opacity-90 transition-opacity duration-200 whitespace-nowrap"
+                className="bg-accent text-text font-bold px-7 py-3.5 md:px-8 md:py-4 rounded-full text-sm tracking-wide hover:opacity-90 transition-opacity duration-200 whitespace-nowrap"
               >
                 Get a Free Quote
               </a>
               <a
                 href="tel:1300666701"
-                className="border border-white/30 text-white font-semibold px-8 py-4 rounded-full text-sm tracking-wide hover:bg-white/10 transition-colors duration-200 backdrop-blur-sm whitespace-nowrap"
+                className="border border-white/30 text-white font-semibold px-7 py-3.5 md:px-8 md:py-4 rounded-full text-sm tracking-wide hover:bg-white/10 transition-colors duration-200 backdrop-blur-sm whitespace-nowrap"
               >
                 Call 1300 666 701
               </a>
             </motion.div>
+
           </div>
         </div>
+
+        {/* Stats bar — mobile only, pinned to bottom */}
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-12 gap-4 pb-6 mt-auto md:hidden">
+          <motion.div
+            custom={6}
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            className="col-span-12 grid grid-cols-4 divide-x divide-white/10 bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl overflow-hidden"
+          >
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="flex flex-col items-center justify-center text-center py-3 px-1"
+              >
+                <span className="text-base font-bold text-white tracking-tight">
+                  {stat.number}
+                </span>
+                <span className="text-[9px] text-white/55 mt-0.5 leading-tight text-center">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
       </div>
 
-      <div className="relative z-10 px-6 pb-8">
+      {/* Stats bar + Badges — desktop only, original layout */}
+      <div className="hidden md:block relative z-10 px-6 pb-8">
         <div className="max-w-7xl mx-auto w-full grid grid-cols-12 gap-4 items-end">
-
-          {/* Stats bar — left */}
           <motion.div
             custom={6}
             initial="hidden"
@@ -133,7 +167,6 @@ export default function Hero() {
               </div>
             ))}
           </motion.div>
-
         </div>
 
         {/* Badges — hidden on mobile, visible sm+ */}
@@ -155,7 +188,6 @@ export default function Hero() {
               />
             </div>
           </div>
-
           <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/20 backdrop-blur-sm border border-white/25 flex items-center justify-center shrink-0">
             <div className="relative w-11 h-11 sm:w-14 sm:h-14">
               <Image
@@ -168,8 +200,8 @@ export default function Hero() {
             </div>
           </div>
         </motion.div>
-
       </div>
+
     </section>
   );
 }
