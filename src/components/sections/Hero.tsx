@@ -34,7 +34,7 @@ export default function Hero() {
           priority
           quality={85}
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-right md:object-center"
         />
         <div className="absolute inset-0 bg-linear-to-b from-black/65 via-black/40 to-black/75" />
       </div>
@@ -89,17 +89,17 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="flex flex-col sm:flex-row gap-3 w-full"
+              className="flex flex-col items-start gap-3 sm:flex-row sm:items-center"
             >
               <a
                 href="#quote"
-                className="bg-accent text-text font-bold px-8 py-4 rounded-full text-sm tracking-wide hover:opacity-90 transition-opacity duration-200"
+                className="bg-accent text-text font-bold px-8 py-4 rounded-full text-sm tracking-wide hover:opacity-90 transition-opacity duration-200 whitespace-nowrap"
               >
                 Get a Free Quote
               </a>
               <a
                 href="tel:1300666701"
-                className="border border-white/30 text-white font-semibold px-8 py-4 rounded-full text-sm tracking-wide hover:bg-white/10 transition-colors duration-200 backdrop-blur-sm"
+                className="border border-white/30 text-white font-semibold px-8 py-4 rounded-full text-sm tracking-wide hover:bg-white/10 transition-colors duration-200 backdrop-blur-sm whitespace-nowrap"
               >
                 Call 1300 666 701
               </a>
@@ -136,13 +136,13 @@ export default function Hero() {
 
         </div>
 
-        {/* Badges — absolutely pinned to bottom-right of section */}
+        {/* Badges — hidden on mobile, visible sm+ */}
         <motion.div
           custom={7}
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="absolute bottom-8 right-6 flex items-center gap-3"
+          className="absolute bottom-8 right-6 hidden sm:flex items-center gap-3"
         >
           <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/20 backdrop-blur-sm border border-white/25 flex items-center justify-center shrink-0">
             <div className="relative w-11 h-11 sm:w-14 sm:h-14">
