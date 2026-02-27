@@ -27,7 +27,7 @@ export default function Hero() {
     <section id="hero" className="relative h-screen flex flex-col overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src="/images/hero.webp"
+          src="images/hero.webp"
           alt="AAA Glazing Services — professional glazier at work"
           fill
           priority

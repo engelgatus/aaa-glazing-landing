@@ -22,7 +22,7 @@ export default function Pain() {
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/pain.jpg"
+          src="images/pain.jpg"
           alt="Broken glass — AAA Glazing Services emergency repair"
           fill
           priority
