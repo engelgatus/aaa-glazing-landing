@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useRef, useState, useCallback } from "react";
+import basePath from "@/lib/basePath";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -27,19 +29,12 @@ function RevealSlider() {
     setPosition(pct);
   }, []);
 
-  const onMouseDown = () => {
-    dragging.current = true;
-  };
-
+  const onMouseDown = () => { dragging.current = true; };
   const onMouseMove = (e: React.MouseEvent) => {
     if (!dragging.current) return;
     updatePosition(e.clientX);
   };
-
-  const onMouseUp = () => {
-    dragging.current = false;
-  };
-
+  const onMouseUp = () => { dragging.current = false; };
   const onTouchMove = (e: React.TouchEvent) => {
     updatePosition(e.touches[0].clientX);
   };
@@ -53,26 +48,29 @@ function RevealSlider() {
       onMouseLeave={onMouseUp}
       onTouchMove={onTouchMove}
     >
-      {/* After panel — base layer */}
-      {/* TODO: replace with <Image fill src="/images/after.jpg" alt="After repair" /> */}
-      <div className="absolute inset-0 bg-slate-300 flex items-end justify-center pb-6">
-        <span className="text-slate-500 text-[10px] font-mono uppercase tracking-widest">
-          After — replace with after.jpg
-        </span>
-      </div>
+      <Image
+        src={`${basePath}/images/after.webp`}
+        alt="After — professionally repaired window by AAA Glazing Services"
+        fill
+        sizes="(max-width: 768px) 100vw, 90vw"
+        quality={85}
+        className="object-cover object-center"
+      />
 
-      {/* Before panel — clipped overlay */}
-      {/* TODO: replace with <Image fill src="/images/before.jpg" alt="Before repair" /> */}
       <div
-        className="absolute inset-0 bg-slate-600 flex items-end justify-center pb-6"
+        className="absolute inset-0"
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
       >
-        <span className="text-slate-300 text-[10px] font-mono uppercase tracking-widest">
-          Before — replace with before.jpg
-        </span>
+        <Image
+          src={`${basePath}/images/before.webp`}
+          alt="Before — shattered residential window prior to repair"
+          fill
+          sizes="(max-width: 768px) 100vw, 90vw"
+          quality={85}
+          className="object-cover object-center"
+        />
       </div>
 
-      {/* Labels */}
       <span className="absolute top-4 left-4 bg-black/50 text-white text-xs font-semibold px-3 py-1 rounded-full backdrop-blur-sm">
         Before
       </span>
@@ -80,7 +78,6 @@ function RevealSlider() {
         After
       </span>
 
-      {/* Divider handle */}
       <div
         className="absolute top-0 bottom-0 w-0.5 bg-white/80 cursor-col-resize"
         style={{ left: `${position}%` }}
@@ -101,16 +98,6 @@ export default function BeforeAfter() {
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4">
 
         <div className="col-span-12 md:col-span-8 mb-10 md:mb-12">
-          <motion.p
-            custom={0}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="text-primary text-xs font-semibold uppercase tracking-[0.2em] mb-4"
-          >
-            Our Work
-          </motion.p>
 
           <motion.h2
             custom={1}
