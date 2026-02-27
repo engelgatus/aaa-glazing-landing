@@ -101,7 +101,7 @@ export default function Testimonials() {
   const t = testimonials[index];
 
   return (
-    <section className="bg-surface py-16 sm:py-20 md:py-24 px-6">
+    <section id="testimonials" className="bg-surface py-16 sm:py-20 md:py-24 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4 items-center">
 
         <div className="col-span-12 md:col-span-5">

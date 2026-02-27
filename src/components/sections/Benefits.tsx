@@ -39,7 +39,7 @@ const benefits = [
 
 export default function Benefits() {
   return (
-    <section className="bg-white py-16 sm:py-20 md:py-24 px-6">
+    <section id="benefits" className="bg-white py-16 sm:py-20 md:py-24 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4">
 
         <div className="col-span-12 md:col-span-8 mb-2">
@@ -73,7 +73,7 @@ export default function Benefits() {
             variants={fadeUp}
             className="text-muted text-base sm:text-lg leading-relaxed"
           >
-            Booking AAA Glazing Services means more than just a repair — it means:
+            Booking AAA Glazing Services means more than just a repair; it means:
           </motion.p>
         </div>
 

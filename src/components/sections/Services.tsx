@@ -60,7 +60,7 @@ export default function Services() {
   };
 
   return (
-    <section className="bg-surface py-16 sm:py-20 md:py-24 px-6">
+    <section id="services" className="bg-surface py-16 sm:py-20 md:py-24 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4 md:gap-8 items-start">
 
         {/* Left — sticky heading */}

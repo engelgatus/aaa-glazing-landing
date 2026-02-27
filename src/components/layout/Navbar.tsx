@@ -1,13 +1,15 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import basePath from "@/lib/basePath";
 
 const navLinks = [
   { label: "Services", href: "#services" },
-  { label: "Why Us", href: "#why-us" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Contact", href: "#contact" },
+  { label: "Why Us", href: "#benefits" },
+  { label: "Reviews", href: "#testimonials" },
+  { label: "Contact", href: "#quote" },
 ];
 
 function smoothScrollTo(id: string) {
@@ -23,15 +25,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const hero = document.querySelector("#hero");
-    if (!hero) {
-      console.warn("[Navbar] #hero element not found — IntersectionObserver not attached");
-      return;
-    }
+    if (!hero) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setOverHero(entry.isIntersecting);
-      },
+      ([entry]) => setOverHero(entry.isIntersecting),
       { threshold: 0.15 }
     );
 
@@ -86,16 +83,26 @@ export default function Navbar() {
       <nav className="max-w-7xl mx-auto flex items-center justify-between">
 
         {/* Logo */}
-        <span
-          className="font-bold text-xl tracking-tight"
+        <button
+          onClick={() => smoothScrollTo("#hero")}
+          aria-label="Back to top"
+          className="shrink-0 rounded-lg px-2 py-1.5 flex items-center"
           style={{
-            color: overHero ? "#ffffff" : "#0f172a",
-            textShadow: overHero ? "0 1px 4px rgba(0,0,0,0.4)" : "none",
-            transition: `color ${colorTransition}, text-shadow ${colorTransition}`,
+            backgroundColor: overHero ? "rgba(255,255,255,0.90)" : "transparent",
+            transition: `background-color ${colorTransition}`,
           }}
         >
-          AAA Glazing
-        </span>
+          <div className="relative w-24 h-8">
+            <Image
+              src={`${basePath}/images/aaa-logo.webp`}
+              alt="AAA Glazing Services"
+              fill
+              sizes="96px"
+              className="object-contain object-left"
+              priority
+            />
+          </div>
+        </button>
 
         {/* Nav Links */}
         <ul className="hidden md:flex items-center gap-8">
@@ -103,7 +110,7 @@ export default function Navbar() {
             <li key={link.href}>
               <button
                 onClick={() => smoothScrollTo(link.href)}
-                className="text-sm font-medium tracking-wide cursor-pointer"
+                className="text-sm font-medium tracking-wide cursor-pointer hover:opacity-70 transition-opacity duration-200"
                 style={{
                   color: overHero ? "rgba(255,255,255,0.80)" : "#0f172a",
                   transition: `color ${colorTransition}`,
@@ -115,7 +122,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA — always accent, never changes */}
+        {/* CTA */}
         <a
           href="tel:1300666701"
           className="bg-accent hover:opacity-90 text-text font-semibold text-sm px-5 py-2.5 rounded-full transition-opacity duration-200"
